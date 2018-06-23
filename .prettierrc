@@ -4,7 +4,7 @@
   "semi": false,
   "trailingComma": "none",
   "singleQuote": true,
-  "bracketSpacing": false,
+  "bracketSpacing": true,
   "arrowParens": "avoid",
   "requirePragma": false,
   "insertPragma": false
