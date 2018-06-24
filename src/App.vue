@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <div>当前访问的URL是：{{url}}</div>
+    <router-link :to="{name: 'layout-v1'}">点击跳转至layout-v1</router-link>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      url: '123123'
-    }
+  props: {
+    url: String
   }
 }
 </script>

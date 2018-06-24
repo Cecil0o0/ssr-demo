@@ -1,5 +1,7 @@
 // https://eslint.org/docs/user-guide/configuring
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
   root: true,
   extends: 'vue',
@@ -26,6 +28,7 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
-    'space-before-function-paren': 0
+    'space-before-function-paren': 0,
+    'no-console': isProduction ? 2 : 0
   }
 }
