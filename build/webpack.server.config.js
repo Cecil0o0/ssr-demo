@@ -12,9 +12,9 @@ module.exports = merge(baseConf, {
   target: 'node',
 
   output: {
-    path: path.resolve(__dirname, '../src/engine'),
-    libraryTarget: 'commonjs2',
-    publicPath: '/'
+    path: path.resolve(__dirname, '../src/server'),
+    filename: '[name].js',
+    libraryTarget: 'commonjs2'
   },
 
   externals: nodeExternals({

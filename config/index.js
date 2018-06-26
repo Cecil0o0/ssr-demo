@@ -12,6 +12,7 @@ const dev = {
   host: '0.0.0.0',
   port: 35555,
   // Paths
+  assetsRoot: path.resolve(__dirname, '../dist'),
   assetsSubDirectory: 'static',
   assetsPublicPath: '/',
   proxyTable: {
@@ -62,11 +63,7 @@ const prod = {
         '^/mock': '/'
       }
     }
-  },
-  // Paths
-  assetsRoot: path.resolve(__dirname, '../dist'),
-  assetsSubDirectory: 'static',
-  assetsPublicPath: '/'
+  }
 }
 
 module.exports = process.env.NODE_ENV === 'production' ? prod : dev

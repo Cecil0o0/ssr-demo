@@ -24,11 +24,6 @@ module.exports = {
 
   context: path.resolve(__dirname, '../'),
 
-  output: {
-    filename: '[name].js?v=[hash]',
-    chunkFilename: '[id].js?v=[hash]'
-  },
-
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
@@ -52,15 +47,16 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
-          'css-loader'
+          'css-loader',
+          'style-loader'
         ]
       },
       {
         test: /\.styl/,
         use: [
           'stylus-loader',
-          'css-loader'
+          'css-loader',
+          'style-loader'
         ]
       },
       {
