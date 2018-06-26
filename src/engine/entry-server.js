@@ -1,4 +1,4 @@
-import { createApp } from '../engine/app'
+import { createApp } from './app'
 
 // context值请参考https://wohugb.gitbooks.io/koajs/content/document/context.html
 export default context => {

@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-26 01:55:11
+ * @Last Modified time: 2018-06-26 20:42:04
  * @Description 无
  */
 'use strict'
@@ -17,7 +17,7 @@ import { proxyTable } from '../../config'
 
 
 // vue应用程序工厂函数
-const template = require('fs').readFileSync(__dirname + '/../template/ssr.index.template.html', 'utf-8')
+const template = require('fs').readFileSync(__dirname + '/../templates/ssr.index.template.html', 'utf-8')
 // server-renderer
 import clientManifest from '../../dist/static/vue-ssr-client-manifest.json'
 import serverBundleJSON from '../engine/vue-ssr-server-bundle.json'

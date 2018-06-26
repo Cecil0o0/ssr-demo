@@ -39,7 +39,7 @@ module.exports = merge(clientConf, {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Demo Dev' + pkg.version,
-      template: 'src/template/dev.index.template.html',
+      template: 'src/templates/dev.index.template.html',
       filename: 'index.html',
       inject: 'body'
     }),

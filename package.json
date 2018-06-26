@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets=env",
-    "server": "nodemon --exec npm run babel-node -- src/server/index.js",
+    "server": "NODE_ENV=production nodemon --exec npm run babel-node -- src/server/index.js",
     "build": "npm run build:server & npm run build:client",
     "build:server": "webpack --config ./build/webpack.server.config.js --mode production",
     "build:client": "webpack --config ./build/webpack.client.config.js --mode production",
-    "serve": "NODE_ENV=production npm run build; npm run server",
+    "serve": "npm run build; npm run server",
     "dev": "NODE_ENV=development npx webpack-dev-server --config build/webpack.dev.config.js --color"
   },
   "repository": {
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/Cecil0o0/ssr-demo#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "clean-webpack-plugin": "^0.1.19",
     "http-proxy-middleware": "^0.18.0",
     "koa": "^2.5.1",
