@@ -13,7 +13,7 @@ const dev = {
   port: 35555,
   // Paths
   assetsRoot: path.resolve(__dirname, '../dist'),
-  assetsSubDirectory: 'static',
+  assetsSubDirectory: 'static/',
   assetsPublicPath: '/',
   proxyTable: {
     // 注意与生产环境中不一样

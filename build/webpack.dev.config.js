@@ -6,6 +6,8 @@ const config = require('../config')
 const pkg = require('../package.json')
 
 module.exports = merge(clientConf, {
+  mode: 'development',
+
   devServer: {
     // 提供静态文件，使用copy-webpack-plugin代替
     contentBase: false,
@@ -39,9 +41,14 @@ module.exports = merge(clientConf, {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Demo Dev' + pkg.version,
-      template: 'src/templates/dev.index.template.html',
+      assetsPath: config.assetsPublicPath + config.assetsSubDirectory,
+      template: 'src/templates/standalone.index.template.html',
       filename: 'index.html',
-      inject: 'body'
+      inject: 'body',
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true
+      }
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()

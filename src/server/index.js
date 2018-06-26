@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-26 22:44:16
+ * @Last Modified time: 2018-06-27 00:32:21
  * @Description 无
  */
 'use strict'
@@ -40,6 +40,7 @@ router.get('*', async (context, next) => {
     context.type = '.html'
     next()
   }, err => {
+    console.log(err)
     let errStr
     try {
       if (err instanceof Error) {

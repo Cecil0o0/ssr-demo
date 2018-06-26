@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConf = require('./webpack.base.config')
 const path = require('path')
@@ -21,16 +22,26 @@ let plugins = [
       to: utils.assetsPath('./'),
       ignore: ['.*']
     }
-  ])
+  ]),
+  new webpack.DefinePlugin({
+    'process.env': {
+      'VUE_SSR': JSON.stringify('client')
+    }
+  })
 ]
 
 if (argv.standalone) {
   plugins.push(
     new HtmlWebpackPlugin({
       title: 'Demo v' + pkg.version,
-      template: 'src/templates/dev.index.template.html',
+      assetsPath: config.assetsPublicPath + config.assetsSubDirectory,
+      template: 'src/templates/standalone.index.template.html',
       filename: 'index.html',
-      inject: 'body'
+      inject: 'body',
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true
+      }
     })
   )
 } else if (argv.ssr) {

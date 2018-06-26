@@ -1,19 +1,22 @@
 {
   "publicPath": "/",
   "all": [
-    "static/js/0.js?v=84bdf",
-    "static/js/1.js?v=84bdf",
-    "static/js/client.js?v=84bdf",
+    "static/js/0.js?v=6bd91",
+    "static/js/1.js?v=6bd91",
+    "static/js/client.js?v=6bd91",
     "static/favicon.ico"
   ],
   "initial": [
-    "static/js/client.js?v=84bdf"
+    "static/js/client.js?v=6bd91"
   ],
   "async": [
-    "static/js/0.js?v=84bdf",
-    "static/js/1.js?v=84bdf"
+    "static/js/0.js?v=6bd91",
+    "static/js/1.js?v=6bd91"
   ],
   "modules": {
+    "2cf21446": [
+      2
+    ],
     "2b739144": [
       2
     ],
@@ -35,6 +38,9 @@
     "52228da1": [
       2
     ],
+    "38c3434a": [
+      2
+    ],
     "6aeeaee4": [
       2
     ],
@@ -48,6 +54,21 @@
       2
     ],
     "06cb2bfa": [
+      2
+    ],
+    "216b97fe": [
+      2
+    ],
+    "f91f1f9a": [
+      2
+    ],
+    "829863aa": [
+      2
+    ],
+    "7588cdba": [
+      2
+    ],
+    "5c1d61cb": [
       2
     ],
     "8c0231f4": [

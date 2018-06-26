@@ -1,8 +1,9 @@
 'use strict'
+const webpack = require('webpack')
 const path = require('path')
 const utils = require('./utils')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const isProduction = process.env.NODE_ENV === 'production'
+const config = require('../config')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -20,8 +21,6 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
-
   context: path.resolve(__dirname, '../'),
 
   resolve: {
@@ -47,16 +46,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          'vue-style-loader',
           'css-loader',
-          'style-loader'
+          'postcss-loader'
         ]
       },
       {
         test: /\.styl/,
         use: [
-          'stylus-loader',
+          'vue-style-loader',
           'css-loader',
-          'style-loader'
+          'postcss-loader',
+          'stylus-loader'
         ]
       },
       {
@@ -78,6 +79,13 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'assetsSubDirectory': JSON.stringify(config.assetsSubDirectory),
+        'assetsPublicPath': JSON.stringify(config.assetsPublicPath),
+        'assetsRoot': JSON.stringify(config.assetsRoot)
+      }
+    }),
     new VueLoaderPlugin()
   ]
 }
