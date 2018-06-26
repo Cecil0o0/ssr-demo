@@ -33,7 +33,7 @@ export default context => {
         context.state = store.state
         // 异步数据已准备就绪，可以渲染app
         resolve(app)
-      }, resolve).catch(reject)
+      }, reject).catch(reject)
     }, reject)
   })
 }

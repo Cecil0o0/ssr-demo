@@ -1,7 +1,5 @@
-import axios from 'axios'
-const PREFIX = '/api'
-const PORT = 4000
+import http from '@/utils/http'
 
 export const blocksData = () => {
-  return axios.get(`http://localhost:${PORT}${PREFIX}/blocks`)
+  return http.get(`/blocks`)
 }

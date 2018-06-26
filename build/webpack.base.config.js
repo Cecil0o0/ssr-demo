@@ -25,13 +25,15 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
 
   output: {
-    filename: '[name].bundle.js'
+    filename: '[name].js?v=[hash]',
+    chunkFilename: '[id].js?v=[hash]'
   },
 
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      '@': resolve('src')
+      '@': resolve('src'),
+      '@@': resolve('./')
     }
   },
 

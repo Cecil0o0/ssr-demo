@@ -5,15 +5,16 @@ const path = require('path')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 module.exports = merge(baseConf, {
-  target: 'node',
-
   entry: {
     server: path.resolve(__dirname, '../src/engine/entry-server.js')
   },
 
+  target: 'node',
+
   output: {
     path: path.resolve(__dirname, '../src/engine'),
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    publicPath: '/'
   },
 
   externals: nodeExternals({
@@ -22,8 +23,6 @@ module.exports = merge(baseConf, {
     // 你还应该将修改 `global`（例如 polyfill）的依赖模块列入白名单
     whitelist: /\.css$/
   }),
-
-  devtool: 'source-map',
 
   plugins: [
     // 输出服务端`vue-ssr-server-bundle.json`

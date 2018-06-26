@@ -1,3 +1,10 @@
+/*
+ * @Author: Cecil
+ * @Last Modified by: Cecil
+ * @Last Modified time: 2018-06-26 01:55:11
+ * @Description 无
+ */
+'use strict'
 import Koa from 'koa'
 import KoaRouter from 'koa-router'
 import KoaStatic from 'koa-static'
@@ -6,39 +13,42 @@ import proxy from 'http-proxy-middleware'
 import path from 'path'
 import signale from 'signale'
 import { createBundleRenderer } from 'vue-server-renderer'
+import { proxyTable } from '../../config'
+
 
 // vue应用程序工厂函数
-const template = require('fs').readFileSync(__dirname + '/../template/index.template.html', 'utf-8')
+const template = require('fs').readFileSync(__dirname + '/../template/ssr.index.template.html', 'utf-8')
 // server-renderer
 import clientManifest from '../../dist/static/vue-ssr-client-manifest.json'
 import serverBundleJSON from '../engine/vue-ssr-server-bundle.json'
 const renderer = createBundleRenderer(serverBundleJSON, {
-  // runInNewContext: false,
+  runInNewContext: 'false',
   template,
   clientManifest
 })
 
 const app = new Koa()
+
 const router = new KoaRouter()
 
-router.all('/api*', c2k(proxy({
-  target: 'http://qingf.me:8999',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api': '/'
-  }
-})))
+Object.keys(proxyTable).forEach(key => {
+  router.all(key, c2k(proxy(proxyTable[key])))
+})
 
 router.get('*', async (context, next) => {
   await renderer.renderToString(context).then(html => {
-    console.log(html)
     context.body = html
     context.type = '.html'
     next()
   }, err => {
+    console.log(err)
     let errStr
     try {
-      errStr = JSON.stringify(err)
+      if (err instanceof Error) {
+        errStr = err.toString()
+      } else {
+        errStr = JSON.stringify(err)
+      }
     } catch(e) {
       errStr = err.toString()
     }
