@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { createApp } from './app'
+import { ClientMixinsInstaller } from './mixins/ssr-client'
 
 const { app, router, store } = createApp()
 
@@ -39,3 +40,7 @@ Vue.mixin({
 router.onReady(() => {
   app.$mount('#app')
 })
+
+// 客户端全局混入
+
+Vue.use(ClientMixinsInstaller)

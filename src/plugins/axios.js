@@ -6,7 +6,7 @@ const axios = Axios.create({
   baseURL: `${dataServer.schema}://${dataServer.host}:${dataServer.port}${PREFIX}`,
   timeout: 5000,
   headers: {
-    'X-Axios': true
+    'X-Client': 'axios'
   }
 })
 

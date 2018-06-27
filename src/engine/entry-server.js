@@ -1,4 +1,6 @@
+import Vue from 'vue'
 import { createApp } from './app'
+import { ServerMixinsInstaller } from './mixins/ssr-server'
 
 // context值请参考https://wohugb.gitbooks.io/koajs/content/document/context.html
 export default context => {
@@ -38,3 +40,7 @@ export default context => {
     }, reject)
   })
 }
+
+// 服务端全局混入
+
+Vue.use(ServerMixinsInstaller)

@@ -6,14 +6,11 @@
 </template>
 
 <script>
-import { title } from '@/mixins/ssr/CommonContext'
-import { assetsPath } from '@/mixins/ssr/ServerContext'
 
 export default {
   props: {
     url: String
   },
-  mixins: [title, assetsPath],
   title () {
     return 'SSR DEMO'
   }
