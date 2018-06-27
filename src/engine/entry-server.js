@@ -30,6 +30,7 @@ export default context => {
           return Promise.resolve()
         }
       })).then(() => {
+        // 服务端会将store的状态序列化为字符串赋值window.__INITIAL__STATE嵌入到渲染的模板中
         context.state = store.state
         // 异步数据已准备就绪，可以渲染app
         resolve(app)

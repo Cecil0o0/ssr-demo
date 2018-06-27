@@ -1,36 +1,41 @@
+import Vue from 'vue'
 import { createApp } from './app'
 
 const { app, router, store } = createApp()
 
+// 客户端初始化store
 if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
 
-router.onReady(() => {
-
-  // client数据预期的逻辑
-  // 在所有组件内守卫以及异步组件解析完毕之后执行
-  router.beforeResolve((to, from, next) => {
-    const matches = router.getMatchedComponents(to)
-    const prevMatches = router.getMatchedComponents(from)
-
-    const actived = matches.filter(c1 => {
-      return !prevMatches.some(c2 => c1 === c2)
-    })
-
-    Promise.all(actived.map(v => {
-      if (typeof v.asyncData === 'function') {
-        return v.asyncData({
-          router: to,
-          store
-        })
-      } else {
-        return Promise.resolve()
-      }
-    })).then(() => {
+// 组件内钩子，保证路由更新重新获取组件数据，有点类似高阶组件的用法
+Vue.mixin({
+  beforeRouteUpdate (to, from, next) {
+    const { asyncData } = this.$options
+    if (typeof asyncData === 'function') {
+      asyncData({
+        store: this.$store,
+        route: to
+      }).then(next).catch(next)
+    } else {
       next()
-    }).catch(next)
-  })
+    }
+  }
+})
 
+// 挂载前获取异步数据并给到该组件dataPromise句柄
+Vue.mixin({
+  beforeMount () {
+    const { asyncData } = this.$options
+    if (typeof asyncData === 'function') {
+      this.dataPromise = asyncData({
+        store: this.$store,
+        route: this.$route
+      })
+    }
+  }
+})
+
+router.onReady(() => {
   app.$mount('#app')
 })

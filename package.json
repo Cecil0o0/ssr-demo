@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets=env",
-    "serve:inner": "NODE_ENV=production nodemon --exec npm run babel-node -- src/server/index.js",
+    "serve-watch:inner": "NODE_ENV=production nodemon --exec npm run babel-node -- server/index.js",
     "build": "npm run build:server-ssr & npm run build:client-ssr",
     "build:server-ssr": "webpack --config ./build/webpack.server.config.js --mode production",
     "build:client-ssr": "webpack --config ./build/webpack.client.config.js --mode production --ssr",
     "build:client-standalone": "webpack --config ./build/webpack.client.config.js --mode production --standalone",
-    "serve": "npm run build; npm run serve:inner",
+    "serve:watch": "npm run build; npm run serve-watch:inner",
+    "serve": "npm run build; node server/transform.js; node server/es5-index.js",
     "dev": "NODE_ENV=development npx webpack-dev-server --config build/webpack.dev.config.js --color"
   },
   "repository": {

@@ -45,17 +45,24 @@ if (argv.standalone) {
     })
   )
 } else if (argv.ssr) {
+  const SSRClientManifestFile = 'vue-ssr-client-manifest.json'
+
   plugins = plugins.concat([
     new VueSSRClientPlugin({
-      filename: 'vue-ssr-client-manifest.json'
+      filename: SSRClientManifestFile
     }),
     new FileManagerWebapckPlugin({
       onEnd: {
         move: [
           {
-            source: path.resolve(__dirname, '../dist/vue-ssr-client-manifest.json'),
-            destination: path.resolve(__dirname, '../src/server/vue-ssr-client-manifest.json')
+            source: path.resolve(__dirname, '../dist', SSRClientManifestFile),
+            destination: path.resolve(__dirname, '../server', SSRClientManifestFile)
           }
+        ]
+      },
+      onStart: {
+        delete: [
+          path.resolve(__dirname, '../server', SSRClientManifestFile)
         ]
       }
     })

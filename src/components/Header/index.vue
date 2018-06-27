@@ -12,7 +12,6 @@ export default {
   asyncData ({ store }) {
     // 动态注册store模块
     store.registerModule('header', HeaderModule)
-
     return store.dispatch('header/fetchBlocksData')
   },
 

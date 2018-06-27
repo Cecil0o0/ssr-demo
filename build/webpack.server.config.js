@@ -4,16 +4,20 @@ const baseConf = require('./webpack.base.config')
 const nodeExternals = require('webpack-node-externals')
 const path = require('path')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const FileManagerWebapckPlugin = require('filemanager-webpack-plugin')
+
+const SSRServerBundle = 'vue-ssr-server-bundle.json'
 
 module.exports = merge(baseConf, {
   entry: {
     server: path.resolve(__dirname, '../src/engine/entry-server.js')
   },
 
+  // in order to ignore built-in modules like path, fs, etc.
   target: 'node',
 
   output: {
-    path: path.resolve(__dirname, '../src/server'),
+    path: path.resolve(__dirname, '../server'),
     filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
@@ -31,7 +35,16 @@ module.exports = merge(baseConf, {
         'VUE_SSR': JSON.stringify('server')
       }
     }),
-    // 输出服务端`vue-ssr-server-bundle.json`
-    new VueSSRServerPlugin()
+    // 输出服务端bundle
+    new VueSSRServerPlugin({
+      filename: SSRServerBundle
+    }),
+    new FileManagerWebapckPlugin({
+      onStart: {
+        delete: [
+          path.resolve(__dirname, '../server', SSRServerBundle)
+        ]
+      }
+    })
   ]
 })

@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-27 00:32:21
+ * @Last Modified time: 2018-06-27 23:37:05
  * @Description 无
  */
 'use strict'
@@ -13,10 +13,10 @@ import proxy from 'http-proxy-middleware'
 import path from 'path'
 import signale from 'signale'
 import { createBundleRenderer } from 'vue-server-renderer'
-import { proxyTable } from '../../config'
+import { proxyTable } from '../config'
 
 // vue应用程序工厂函数
-const template = require('fs').readFileSync(__dirname + '/../templates/ssr.index.template.html', 'utf-8')
+const template = require('fs').readFileSync(__dirname + '/../src/templates/ssr.index.template.html', 'utf-8')
 // server-renderer
 import clientManifest from './vue-ssr-client-manifest.json'
 import serverBundleJSON from './vue-ssr-server-bundle.json'
@@ -40,7 +40,7 @@ router.get('*', async (context, next) => {
     context.type = '.html'
     next()
   }, err => {
-    console.log(err)
+    signale.error(err)
     let errStr
     try {
       if (err instanceof Error) {
@@ -57,7 +57,7 @@ router.get('*', async (context, next) => {
 })
 
 app
-  .use(KoaStatic(path.resolve(__dirname, '../../dist'), {
+  .use(KoaStatic(path.resolve(__dirname, '../dist'), {
     gzip: true
   }))
   .use(router.routes())
