@@ -1,11 +1,18 @@
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const clientConf = require('./webpack.client.config')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const config = require('../config')
-const pkg = require('../package.json')
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import clientConf from './webpack.client.babel'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import env from '../config/env'
+import { PROJECT_ENV } from '../config'
+import pkg from '../package.json'
+import signale from 'signale'
 
-module.exports = merge(clientConf, {
+if (PROJECT_ENV !== 'dev') {
+  signale.error('请将config/index.js中PROJECT_ENV设置为dev后重试')
+  process.exit(0)
+}
+
+export default merge(clientConf, {
   mode: 'development',
 
   devServer: {
@@ -13,17 +20,17 @@ module.exports = merge(clientConf, {
     contentBase: false,
     // HMR
     hot: true,
-    port: config.port && Number(config.port),
+    port: env.port && Number(env.port),
     open: true,
-    host: config.host,
+    host: env.host,
     // 去掉客户端日志
     clientLogLevel: 'none',
     headers: Object.assign({
       'X-Server': 'webpack-dev-server'
-    }, config.headers),
+    }, env.headers),
     // 设置apifallback配合router的history模式
     historyApiFallback: true,
-    index: config.index,
+    index: env.index,
     // 内联模式，与client建立一个websocket连接用于热重载
     inline: true,
     // 错误与警告都抛出在client端
@@ -32,16 +39,16 @@ module.exports = merge(clientConf, {
       errors: true
     },
     // 使用http-proxy-middleware的代理功能
-    proxy: config.proxyTable,
+    proxy: env.proxyTable,
     progress: true,
     // rewrite publicPath
-    publicPath: config.assetsPublicPath
+    publicPath: env.assetsPublicPath
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Demo Dev' + pkg.version,
-      assetsPath: config.assetsPublicPath + config.assetsSubDirectory,
+      assetsPath: env.assetsPublicPath + env.assetsSubDirectory,
       template: 'src/templates/standalone.index.template.html',
       filename: 'index.html',
       inject: 'body',

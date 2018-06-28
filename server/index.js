@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-28 00:52:34
+ * @Last Modified time: 2018-06-29 01:12:16
  * @Description 无
  */
 'use strict'
@@ -13,7 +13,8 @@ import proxy from 'http-proxy-middleware'
 import path from 'path'
 import signale from 'signale'
 import { createBundleRenderer } from 'vue-server-renderer'
-import { proxyTable } from '../config'
+import env from '../config/env'
+const { proxyTable } = env
 
 // vue应用程序工厂函数
 const template = require('fs').readFileSync(__dirname + '/../src/templates/ssr.index.template.html', 'utf-8')
@@ -31,7 +32,7 @@ const app = new Koa()
 const router = new KoaRouter()
 
 Object.keys(proxyTable).forEach(key => {
-  router.all(key, c2k(proxy(proxyTable[key])))
+  router.all(`${key}*`, c2k(proxy(proxyTable[key])))
 })
 
 router.get('*', async (context, next) => {
@@ -63,6 +64,6 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(4000, () => {
+app.listen(env.port, () => {
   signale.success('server is listening at 4000')
 })

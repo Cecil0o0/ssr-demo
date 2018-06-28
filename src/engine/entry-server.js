@@ -1,3 +1,11 @@
+/*
+ * @Author: Cecil
+ * @Last Modified by: Cecil
+ * @Last Modified time: 2018-06-29 01:03:58
+ * @Description 打包vue-ssr-server-bundle.json入口文件
+ */
+'use strict'
+
 import Vue from 'vue'
 import { createApp } from './app'
 import { ServerMixinsInstaller } from './mixins/ssr-server'

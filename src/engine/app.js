@@ -1,3 +1,11 @@
+/*
+ * @Author: Cecil
+ * @Last Modified by: Cecil
+ * @Last Modified time: 2018-06-29 01:02:50
+ * @Description App主入口文件，主要用于初始化Vue实例并挂载router与vuex
+ */
+'use strict'
+
 import Vue from 'vue'
 import App from '../App'
 import { createRouter } from './router'

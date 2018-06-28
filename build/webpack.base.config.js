@@ -1,9 +1,15 @@
+/*
+ * @Author: Cecil
+ * @Last Modified by: Cecil
+ * @Last Modified time: 2018-06-28 23:59:32
+ * @Description 工程通用配置
+ */
 'use strict'
-const webpack = require('webpack')
-const path = require('path')
-const utils = require('./utils')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const config = require('../config')
+import webpack from 'webpack'
+import path from 'path'
+import { assetsPath } from './utils'
+import VueLoaderPlugin from 'vue-loader/lib/plugin'
+import env from '../config/env'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -20,7 +26,7 @@ const createLintingRule = () => ({
   }
 })
 
-module.exports = {
+export default {
   context: path.resolve(__dirname, '../'),
 
   resolve: {
@@ -65,7 +71,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[ext]?v=[hash:7]')
+          name: assetsPath('img/[name].[ext]?v=[hash:7]')
         }
       },
       {
@@ -73,7 +79,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[ext]?v=[hash:7]')
+          name: assetsPath('fonts/[name].[ext]?v=[hash:7]')
         }
       }
     ]
@@ -81,9 +87,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'assetsSubDirectory': JSON.stringify(config.assetsSubDirectory),
-        'assetsPublicPath': JSON.stringify(config.assetsPublicPath),
-        'assetsRoot': JSON.stringify(config.assetsRoot)
+        'assetsSubDirectory': JSON.stringify(env.assetsSubDirectory),
+        'assetsPublicPath': JSON.stringify(env.assetsPublicPath),
+        'assetsRoot': JSON.stringify(env.assetsRoot)
       }
     }),
     new VueLoaderPlugin()

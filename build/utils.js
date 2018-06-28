@@ -1,7 +1,16 @@
 'use strict'
-const path = require('path')
-const config = require('../config')
+import path from 'path'
+import env from '../config/env'
+import { spawn } from 'child_process'
 
-exports.assetsPath = function (_path) {
-  return path.posix.join(config.assetsSubDirectory, _path)
+export const assetsPath = function (_path = '') {
+  return path.posix.join(env.assetsSubDirectory, _path)
+}
+
+// CLI中执行shell并继承父进程IO进行标准输入输出
+export const shell_stdio = function (command) {
+  spawn(command, [], {
+    shell: true,
+    stdio: 'inherit'
+  })
 }

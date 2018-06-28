@@ -1,5 +1,7 @@
 import http from '@/plugins/axios'
 
 export const blocksData = () => {
-  return http.get(`/blocks`)
+  return http.get(`/blocks`, {
+    notShowDefaultError: true
+  })
 }
