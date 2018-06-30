@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 01:08:21
+ * @Last Modified time: 2018-06-30 13:29:20
  * @Description Router工厂方法
  */
 'use strict'
@@ -15,9 +15,10 @@ import { ROUTER_BASE_CONFIG } from '@@/config/base'
 Vue.use(Router)
 
 export function createRouter() {
-  const router = new Router(Object.assign({}, ROUTER_BASE_CONFIG, {
+  const router = new Router({
+    ...ROUTER_BASE_CONFIG,
     routes
-  }))
+  })
 
   // 全局路由钩子
   router.beforeEach(routerBeforeEach)

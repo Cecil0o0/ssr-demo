@@ -13,7 +13,7 @@ export default merge(baseConf, {
   mode: PROJECT_ENV === 'production' ? 'production' : 'development',
 
   entry: {
-    server: path.resolve(__dirname, '../src/engine/entry-server.js')
+    server: ['babel-polyfill', path.resolve(__dirname, '../src/engine/entry-server.js')]
   },
 
   // in order to ignore built-in modules like path, fs, etc.

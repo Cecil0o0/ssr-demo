@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 00:57:38
+ * @Last Modified time: 2018-06-30 13:56:47
  * @Description 全局配置开关
  */
 'use strict'
@@ -31,5 +31,8 @@ export const ENABLE_REQ_LOG = false
 // TODO 是否开启响应参数打印（主要用于ssr服务端asyncData）
 export const ENABLE_RES_LOG = false
 
-// TODO 是否使用异步组件
+// 是否开启api调试
+export const ENABLE_API_DEBUG = true
+
+// TODO 是否使用异步组件懒加载
 export const ENABLE_ASYNC_COM = true

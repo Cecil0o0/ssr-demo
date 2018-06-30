@@ -79,7 +79,7 @@ module.exports = merge(baseConf, {
   mode: PROJECT_ENV === 'production' ? 'production' : 'development',
 
   entry: {
-    client: resolve('../src/engine/entry-client.js')
+    client: ['babel-polyfill', resolve('../src/engine/entry-client.js')]
   },
 
   target: 'web',

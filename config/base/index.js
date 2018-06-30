@@ -1,13 +1,13 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 01:06:38
+ * @Last Modified time: 2018-06-30 15:31:47
  * @Description 插件或组件等基础配置
  */
 'use strict'
 import env from '../env'
-import { ENABLE_MOCK_DATA, PROJECT_ENV } from '../index'
-const PREFIX = ENABLE_MOCK_DATA ? '/mock' : '/api'
+import { MOCK_PREFIX, API_PREFIX } from '../constants'
+import { ENABLE_MOCK_DATA, PROJECT_ENV, ENABLE_API_DEBUG } from '../index'
 const { schema, host, port} = env.dataServer
 
 // router基础配置
@@ -26,9 +26,19 @@ export const STORE_BASE_CONFIG = {
 
 // axios基础配置
 export const AXIOS_BASE_CONFIG = {
-  baseURL: `${schema}://${host}:${port}${PREFIX}`,
+  baseURL: `${schema}://${host}:${port}${API_PREFIX}`,
   timeout: 5000,
+  maxContentLength: 2000,
   headers: {
     'X-Client': 'Axios'
   }
+}
+
+// api基础配置
+export const API_BASE_CONFIG = {
+  mock: ENABLE_MOCK_DATA,
+  mockBaseURL: `${schema}://${host}:${port}${MOCK_PREFIX}`,
+  sep: '$',
+  debug: ENABLE_API_DEBUG,
+  PROJECT_ENV
 }

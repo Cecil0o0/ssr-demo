@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 01:12:16
+ * @Last Modified time: 2018-06-30 17:43:48
  * @Description 无
  */
 'use strict'
@@ -65,5 +65,5 @@ app
   .use(router.allowedMethods())
 
 app.listen(env.port, () => {
-  signale.success('server is listening at 4000')
+  signale.success('server is listening at '+ env.port)
 })

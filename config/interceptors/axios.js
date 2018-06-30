@@ -1,10 +1,11 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 00:53:21
+ * @Last Modified time: 2018-06-30 16:22:05
  * @Description axios拦截器
  */
 'use strict'
+import { isUndef } from '@/utils'
 
 // 请求成功
 export const reqFulfilled = function(config) {
@@ -26,7 +27,9 @@ export const reqRejected = function(error) {
 export const resFulfilled = function(response) {
   // TODO 处理响应打印
   // TODO 处理响应HTTP响应头状态，无权限时跳登录或错误页
-  !response.config.notShowDefaultError && console.error('默认的错误处理')
+  if (response.status !== 200) {
+    isUndef(response.config.notShowDefaultError) && console.error('默认的错误处理')
+  }
   console.log('res success', response)
   return response
 }

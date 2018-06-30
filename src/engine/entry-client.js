@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 01:04:05
+ * @Last Modified time: 2018-06-30 17:49:10
  * @Description 打包vue-ssr-client-manifest.json入口文件
  */
 'use strict'
@@ -32,21 +32,22 @@ Vue.mixin({
   }
 })
 
-// 挂载前获取异步数据并给到该组件dataPromise句柄
-Vue.mixin({
-  beforeMount () {
-    const { asyncData } = this.$options
-    if (typeof asyncData === 'function') {
-      this.dataPromise = asyncData({
-        store: this.$store,
-        route: this.$route
-      })
-    }
-  }
-})
-
 router.onReady(() => {
   app.$mount('#app')
+
+  // !客户端在app挂载到dom后再混入以防止double-fetch
+  // 挂载前获取异步数据并给到该组件dataPromise句柄
+  Vue.mixin({
+    beforeMount () {
+      const { asyncData } = this.$options
+      if (typeof asyncData === 'function') {
+        this.dataPromise = asyncData({
+          store: this.$store,
+          route: this.$route
+        })
+      }
+    }
+  })
 })
 
 // 客户端全局混入
