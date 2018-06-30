@@ -9,6 +9,8 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FileManagerWebapckPlugin from 'filemanager-webpack-plugin'
+import webpackBundleAnalyer from 'webpack-bundle-analyzer'
+const BundleAnalyzerPlugin = webpackBundleAnalyer.BundleAnalyzerPlugin
 import pkg from '../package.json'
 import env from '../config/env'
 import { SSR_CLIENT_MANIFEST } from '../config/constants'
@@ -72,6 +74,10 @@ if (argv.standalone) {
         ]
       }
     })
+  ])
+} else if (argv.analyze) {
+  plugins = plugins.concat([
+    new BundleAnalyzerPlugin()
   ])
 }
 

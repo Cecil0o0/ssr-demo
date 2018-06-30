@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-28 23:59:32
+ * @Last Modified time: 2018-06-30 23:54:27
  * @Description 工程通用配置
  */
 'use strict'
@@ -9,6 +9,7 @@ import webpack from 'webpack'
 import path from 'path'
 import { assetsPath } from './utils'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
+import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import env from '../config/env'
 
 function resolve(dir) {
@@ -92,6 +93,8 @@ export default {
         'assetsRoot': JSON.stringify(env.assetsRoot)
       }
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    // 友好的控制台提示插件
+    new FriendlyErrorsPlugin()
   ]
 }
