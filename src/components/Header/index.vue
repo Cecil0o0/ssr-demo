@@ -9,14 +9,13 @@
 import HeaderModule from './store'
 
 export default {
-  asyncData ({ store }) {
-    // 动态注册store模块
-    store.registerModule('header', HeaderModule)
-    return store.dispatch('header/fetchBlocksData')
+  async asyncData ({ store }) {
+    await store.dispatch('header/fetchBlocksData')
   },
 
-  destroyed () {
-    this.$store.unregisterModule('header')
+  $autoStoreModule: {
+    name: 'header',
+    moduleData: HeaderModule
   },
 
   computed: {

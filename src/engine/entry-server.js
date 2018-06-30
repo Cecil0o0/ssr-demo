@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-29 01:03:58
+ * @Last Modified time: 2018-07-01 02:18:44
  * @Description 打包vue-ssr-server-bundle.json入口文件
  */
 'use strict'
@@ -9,6 +9,7 @@
 import Vue from 'vue'
 import { createApp } from './app'
 import { ServerMixinsInstaller } from './mixins/ssr-server'
+import { isFunc } from '@/utils'
 
 // context值请参考https://wohugb.gitbooks.io/koajs/content/document/context.html
 export default context => {
@@ -31,13 +32,18 @@ export default context => {
       }
 
       Promise.all(matchedComponents.map(c => {
-        if (typeof c.asyncData === 'function') {
+        // (addon)动态注册store
+        if (c.$autoStoreModule) {
+          const { name, moduleData } = c.$autoStoreModule
+          store.registerModule(name, moduleData)
+        }
+        if (isFunc(c.asyncData)) {
           return c.asyncData({
             router,
             store
           })
         } else {
-          return Promise.resolve()
+          return Promise.resolve(c.asyncData)
         }
       })).then(() => {
         // 服务端会将store的状态序列化为字符串赋值window.__INITIAL__STATE嵌入到渲染的模板中
@@ -50,5 +56,4 @@ export default context => {
 }
 
 // 服务端全局混入
-
 Vue.use(ServerMixinsInstaller)

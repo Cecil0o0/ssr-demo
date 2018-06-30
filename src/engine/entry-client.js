@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-30 17:49:10
+ * @Last Modified time: 2018-07-01 02:01:31
  * @Description 打包vue-ssr-client-manifest.json入口文件
  */
 'use strict'
@@ -11,11 +11,6 @@ import { createApp } from './app'
 import { ClientMixinsInstaller } from './mixins/ssr-client'
 
 const { app, router, store } = createApp()
-
-// 客户端初始化store
-if (window.__INITIAL_STATE__) {
-  store.replaceState(window.__INITIAL_STATE__)
-}
 
 // 组件内钩子，保证路由更新重新获取组件数据，有点类似高阶组件的用法
 Vue.mixin({
@@ -33,6 +28,21 @@ Vue.mixin({
 })
 
 router.onReady(() => {
+
+  const coms = router.getMatchedComponents()
+  // (addon)动态注册路由匹配到的所有组件的store
+  coms && coms.forEach(c => {
+    if (c.$autoStoreModule) {
+      const { name, moduleData } = c.$autoStoreModule
+      store.registerModule(name, moduleData)
+    }
+  })
+
+  // 客户端初始化store数据
+  if (window.__INITIAL_STATE__) {
+    store.replaceState(window.__INITIAL_STATE__)
+  }
+
   app.$mount('#app')
 
   // !客户端在app挂载到dom后再混入以防止double-fetch

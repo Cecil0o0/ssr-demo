@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-28 00:44:04
+ * @Last Modified time: 2018-07-01 02:16:38
  * @Description 客户端全局混入配置
  */
 'use strict'
@@ -16,12 +16,22 @@ const clientTitleMixin = {
   }
 }
 
-const mixins = [
-  clientTitleMixin
-]
+const autoStoreModuleMixin = {
+  mounted () {
+    if (this.$autoStoreModule) {
+      const { name, moduleData } = this.$autoStoreModule
+      !this.$store.state[name] && this.$store.registerModule(name, moduleData)
+    }
+  },
+  destroyed () {
+    this.$autoStoreModule && this.$store.unregisterModule(this.$autoStoreModule.name)
+  }
+}
+
+const mixins = [clientTitleMixin, autoStoreModuleMixin]
 
 export const ClientMixinsInstaller = {
-  install (Vue) {
+  install(Vue) {
     mixins.forEach(m => Vue.mixin(m))
   }
 }
