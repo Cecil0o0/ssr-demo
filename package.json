@@ -1,7 +1,7 @@
 {
-  "name": "ssr-demo",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "description": "ssr脚手架",
+  "description": "{{description}}",
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets=env",
@@ -21,18 +21,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cecil0o0/ssr-demo.git"
+    "url": ""
   },
   "keywords": [
     "vue",
     "ssr"
   ],
-  "author": "Cecil0o0",
+  "author": "{{name}}",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Cecil0o0/ssr-demo/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/Cecil0o0/ssr-demo#readme",
+  "homepage": "",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
