@@ -19,8 +19,6 @@ devDependencies:
   babel-eslint: 8.2.5
   babel-loader: 7.1.4
   babel-plugin-syntax-dynamic-import: 6.18.0
-  babel-plugin-transform-async-generator-functions: 6.24.1
-  babel-plugin-transform-regenerator: 6.26.0
   babel-plugin-transform-runtime: 6.23.0
   babel-preset-env: 1.7.0
   babel-preset-stage-2: 6.24.1
@@ -38,6 +36,9 @@ devDependencies:
   friendly-errors-webpack-plugin: 1.7.0
   html-webpack-plugin: 3.2.0
   postcss-loader: 2.1.5
+  rollup: 0.62.0
+  rollup-plugin-json: 3.0.0
+  rollup-plugin-node-resolve: 3.3.0
   stylus: 0.54.5
   stylus-loader: 3.0.2
   vue-loader: 15.2.4
@@ -127,6 +128,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5eTV4WRmqbaFM3v9gHAIljEQJU4Ssc6fxL61JN+Oe2ga/BwyjzjamwkCVVAQjHGuAX8i0BWo42dshL8eO5KfLQ==
+  /@types/estree/0.0.39:
+    dev: true
+    resolution:
+      integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
+  /@types/node/10.5.1:
+    dev: true
+    resolution:
+      integrity: sha512-AFLl1IALIuyt6oK4AYZsgWVJ/5rnyzQWud7IebaZWWV3YmgtPZkQmYio9R5Ze/2pdd7XfqF5bP+hWS11mAKoOQ==
   /@vue/component-compiler-utils/1.3.1:
     dependencies:
       consolidate: 0.15.1
@@ -1463,6 +1472,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
+  /builtin-modules/2.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-3U5kUA5VPsRUA3nofm/BXX7GVHKfxz0hOBAPxXrIvHzlDRkQVqEn6yi8QJegxl4LzOHLdvb7XF5dVawa/VVYBg==
   /builtin-status-codes/3.0.0:
     dev: true
     resolution:
@@ -2731,6 +2746,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-De4/7TH81GlhjOc0IJn8GvoL2xM=
+  /estree-walker/0.5.2:
+    dev: true
+    resolution:
+      integrity: sha512-XpCnW/AE10ws/kDAs37cngSkvgIR8aN3G0MS85m7dUpuK2EREo9VJ00uvw6Dg/hXEpfsE1I1TvJOJr+Z+TL+ig==
   /esutils/2.0.2:
     dev: true
     engines:
@@ -3928,6 +3947,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-lSHHaEXMJhCoUgPd8ICpWML/q8A=
+  /is-module/1.0.0:
+    dev: true
+    resolution:
+      integrity: sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=
   /is-number/2.1.0:
     dependencies:
       kind-of: 3.2.2
@@ -6076,6 +6099,35 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==
+  /rollup-plugin-json/3.0.0:
+    dependencies:
+      rollup-pluginutils: 2.3.0
+    dev: true
+    resolution:
+      integrity: sha512-WUAV9/I/uFWvHhyRTqFb+3SIapjISFJS7R1xN/cXxWESrfYo9I8ncHI7AxJHflKRXhBVSv7revBVJh2wvhWh5w==
+  /rollup-plugin-node-resolve/3.3.0:
+    dependencies:
+      builtin-modules: 2.0.0
+      is-module: 1.0.0
+      resolve: 1.8.1
+    dev: true
+    resolution:
+      integrity: sha512-9zHGr3oUJq6G+X0oRMYlzid9fXicBdiydhwGChdyeNRGPcN/majtegApRKHLR5drboUvEWU+QeUmGTyEZQs3WA==
+  /rollup-pluginutils/2.3.0:
+    dependencies:
+      estree-walker: 0.5.2
+      micromatch: 2.3.11
+    dev: true
+    resolution:
+      integrity: sha512-xB6hsRsjdJdIYWEyYUJy/3ki5g69wrf0luHPGNK3ZSocV6HLNfio59l3dZ3TL4xUwEKgROhFi9jOCt6c5gfUWw==
+  /rollup/0.62.0:
+    dependencies:
+      '@types/estree': 0.0.39
+      '@types/node': 10.5.1
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-mZS0aIGfYzuJySJD78znu9/hCJsNfBzg4lDuZGMj0hFVcYHt2evNRHv8aqiu9/w6z6Qn8AQoVl4iyEjDmisGeA==
   /run-async/2.3.0:
     dependencies:
       is-promise: 2.1.0
@@ -7472,8 +7524,6 @@ specifiers:
   babel-eslint: ^8.2.5
   babel-loader: ^7.1.4
   babel-plugin-syntax-dynamic-import: ^6.18.0
-  babel-plugin-transform-async-generator-functions: ^6.24.1
-  babel-plugin-transform-regenerator: ^6.26.0
   babel-plugin-transform-runtime: ^6.23.0
   babel-polyfill: ^6.26.0
   babel-preset-env: ^1.7.0
@@ -7498,6 +7548,9 @@ specifiers:
   koa-router: ^7.4.0
   koa-static: ^5.0.0
   postcss-loader: ^2.1.5
+  rollup: ^0.62.0
+  rollup-plugin-json: ^3.0.0
+  rollup-plugin-node-resolve: ^3.3.0
   signale: ^1.2.1
   stylus: ^0.54.5
   stylus-loader: ^3.0.2

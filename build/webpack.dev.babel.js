@@ -6,6 +6,7 @@ import env from '../config/env'
 import { PROJECT_ENV } from '../config'
 import pkg from '../package.json'
 import signale from 'signale'
+import path from 'path'
 
 if (PROJECT_ENV !== 'dev') {
   signale.error('请将config/index.js中PROJECT_ENV设置为dev后重试')
@@ -14,6 +15,10 @@ if (PROJECT_ENV !== 'dev') {
 
 export default merge(clientConf, {
   mode: 'development',
+
+  entry: {
+    client: [path.join(__dirname, '../src/engine/entries/standalone.js')]
+  },
 
   devServer: {
     // 提供静态文件，使用copy-webpack-plugin代替

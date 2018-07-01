@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 00:19:40
+ * @Last Modified time: 2018-07-01 12:44:48
  * @Description 无
  */
 'use strict'
@@ -31,7 +31,7 @@ const app = new Koa()
 
 const router = new KoaRouter()
 
-Object.keys(proxyTable).forEach(key => {
+proxyTable && Object.keys(proxyTable).forEach(key => {
   router.all(`${key}*`, c2k(proxy(proxyTable[key])))
 })
 

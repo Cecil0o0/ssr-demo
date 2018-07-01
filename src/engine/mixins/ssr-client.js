@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 02:16:38
+ * @Last Modified time: 2018-07-01 11:12:10
  * @Description 客户端全局混入配置
  */
 'use strict'
@@ -17,9 +17,9 @@ const clientTitleMixin = {
 }
 
 const autoStoreModuleMixin = {
-  mounted () {
-    if (this.$autoStoreModule) {
-      const { name, moduleData } = this.$autoStoreModule
+  created () {
+    if (this.$options.$autoStoreModule) {
+      const { name, moduleData } = this.$options.$autoStoreModule
       !this.$store.state[name] && this.$store.registerModule(name, moduleData)
     }
   },

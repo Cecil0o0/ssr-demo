@@ -1,14 +1,14 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 02:01:31
+ * @Last Modified time: 2018-07-01 11:17:53
  * @Description 打包vue-ssr-client-manifest.json入口文件
  */
 'use strict'
 
 import Vue from 'vue'
-import { createApp } from './app'
-import { ClientMixinsInstaller } from './mixins/ssr-client'
+import { createApp } from '../app'
+import { ClientMixinsInstaller } from '../mixins/ssr-client'
 
 const { app, router, store } = createApp()
 
@@ -19,7 +19,7 @@ Vue.mixin({
     if (typeof asyncData === 'function') {
       asyncData({
         store: this.$store,
-        route: to
+        router
       }).then(next).catch(next)
     } else {
       next()
@@ -27,8 +27,21 @@ Vue.mixin({
   }
 })
 
-router.onReady(() => {
+// !客户端在app挂载到dom后再混入以防止double-fetch
+// 挂载前获取异步数据并给到该组件dataPromise句柄
+Vue.mixin({
+  beforeMount () {
+    const { asyncData } = this.$options
+    if (typeof asyncData === 'function') {
+      this.dataPromise = asyncData({
+        store: this.$store,
+        router
+      })
+    }
+  }
+})
 
+router.onReady(() => {
   const coms = router.getMatchedComponents()
   // (addon)动态注册路由匹配到的所有组件的store
   coms && coms.forEach(c => {
@@ -44,20 +57,6 @@ router.onReady(() => {
   }
 
   app.$mount('#app')
-
-  // !客户端在app挂载到dom后再混入以防止double-fetch
-  // 挂载前获取异步数据并给到该组件dataPromise句柄
-  Vue.mixin({
-    beforeMount () {
-      const { asyncData } = this.$options
-      if (typeof asyncData === 'function') {
-        this.dataPromise = asyncData({
-          store: this.$store,
-          route: this.$route
-        })
-      }
-    }
-  })
 })
 
 // 客户端全局混入

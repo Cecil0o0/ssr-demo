@@ -29,6 +29,6 @@ module.exports = {
   // add your custom rules here
   rules: {
     'space-before-function-paren': 0,
-    'no-console': isProduction ? 2 : 0
+    'no-console': isProduction ? 1 : 0
   }
 }

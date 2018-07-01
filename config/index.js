@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-30 13:56:47
+ * @Last Modified time: 2018-07-01 12:41:06
  * @Description 全局配置开关
  */
 'use strict'

@@ -12,7 +12,7 @@ import { PROJECT_ENV } from '../config'
 export default merge(baseConf, {
   mode: PROJECT_ENV === 'production' ? 'production' : 'development',
 
-  entry: path.resolve(__dirname, '../src/engine/entry-server.js'),
+  entry: path.resolve(__dirname, '../src/engine/ssr-server.js'),
 
   // in order to ignore built-in modules like path, fs, etc.
   target: 'node',
