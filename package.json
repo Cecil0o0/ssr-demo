@@ -1,5 +1,5 @@
 {
-  "name": "{{name}}",
+  "name": "{{project_name}}",
   "version": "1.0.0",
   "description": "{{description}}",
   "main": "index.js",
@@ -27,7 +27,7 @@
     "vue",
     "ssr"
   ],
-  "author": "{{name}}",
+  "author": "{{author_name}}",
   "license": "MIT",
   "bugs": {
     "url": ""
