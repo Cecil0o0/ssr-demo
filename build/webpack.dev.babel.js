@@ -28,7 +28,7 @@ export default merge(clientConf, {
     port: env.port && Number(env.port),
     open: true,
     host: env.host,
-    // 配置friendly-errors-webpack-plugin使用
+    // 配合friendly-errors-webpack-plugin使用
     quiet: true,
     // 去掉客户端日志
     clientLogLevel: 'none',
