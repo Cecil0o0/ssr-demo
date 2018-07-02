@@ -1,5 +1,4 @@
 'use strict'
-import webpack from 'webpack'
 import merge from 'webpack-merge'
 import clientConf from './webpack.client.babel'
 import path from 'path'
@@ -10,6 +9,7 @@ import webpackBundleAnalyer from 'webpack-bundle-analyzer'
 const BundleAnalyzerPlugin = webpackBundleAnalyer.BundleAnalyzerPlugin
 import Argv from 'yargs'
 const argv = Argv.argv
+import { getEntryPath } from './utils'
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -44,7 +44,7 @@ if (argv.analyze) {
 
 export default merge(clientConf, {
   entry: {
-    client: [resolve('../src/engine/ssr-client.js')]
+    client: getEntryPath('ssr-client.js')
   },
 
   optimization: {

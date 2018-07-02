@@ -14,3 +14,8 @@ export const shell_stdio = function (command) {
     stdio: 'inherit'
   })
 }
+
+// 获取webpack入口文件
+export const getEntryPath = function getEntryPath(filename) {
+  return path.resolve(__dirname, '../src/engine/entries', filename)
+}

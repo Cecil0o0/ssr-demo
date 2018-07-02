@@ -1,14 +1,14 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 02:18:44
+ * @Last Modified time: 2018-07-02 19:47:28
  * @Description 打包vue-ssr-server-bundle.json入口文件
  */
 'use strict'
 
 import Vue from 'vue'
-import { createApp } from './app'
-import { ServerMixinsInstaller } from './mixins/ssr-server'
+import { createApp } from '../app'
+import { ServerMixinsInstaller } from '../mixins/ssr-server'
 import { isFunc } from '@/utils'
 
 // context值请参考https://wohugb.gitbooks.io/koajs/content/document/context.html

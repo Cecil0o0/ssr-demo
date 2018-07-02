@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 12:41:06
+ * @Last Modified time: 2018-07-02 19:57:56
  * @Description 全局配置开关
  */
 'use strict'
@@ -36,3 +36,6 @@ export const ENABLE_API_DEBUG = true
 
 // TODO 是否使用异步组件懒加载
 export const ENABLE_ASYNC_COM = true
+
+// TODO 是否开启静态资源CDN上传
+export const ENABLE_CDN_UPLOAD = false

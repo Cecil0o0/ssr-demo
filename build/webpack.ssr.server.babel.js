@@ -8,11 +8,12 @@ import VueSSRServerPlugin from 'vue-server-renderer/server-plugin'
 import FileManagerWebapckPlugin from 'filemanager-webpack-plugin'
 import { SSR_SERVER_BUNDLE } from '../config/constants'
 import { PROJECT_ENV } from '../config'
+import { getEntryPath } from './utils'
 
 export default merge(baseConf, {
   mode: PROJECT_ENV === 'production' ? 'production' : 'development',
 
-  entry: path.resolve(__dirname, '../src/engine/ssr-server.js'),
+  entry: getEntryPath('ssr-server.js'),
 
   // in order to ignore built-in modules like path, fs, etc.
   target: 'node',

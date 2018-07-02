@@ -1,14 +1,14 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 11:21:54
+ * @Last Modified time: 2018-07-02 19:47:27
  * @Description 打包vue-ssr-client-manifest.json入口文件
  */
 'use strict'
 
 import Vue from 'vue'
-import { createApp } from './app'
-import { ClientMixinsInstaller } from './mixins/ssr-client'
+import { createApp } from '../app'
+import { ClientMixinsInstaller } from '../mixins/ssr-client'
 
 const { app, router, store } = createApp()
 

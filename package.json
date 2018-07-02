@@ -11,7 +11,7 @@
     "build:client-ssr": "webpack --config ./build/webpack.ssr.client.babel.js",
     "serve:watch": "npm run build:ssr; npm run serve-watch:inner",
     "dev": "npx webpack-dev-server --config build/webpack.dev.babel.js --color",
-    "build": "node build",
+    "build": "babel-node build",
     "build:client-standalone": "webpack --config ./build/webpack.standalone.babel.js",
     "build:client-analyze": "webpack --config ./build/webpack.client.babel.js --analyze",
     "serve": "npm run build:ssr; rollup -c server/rollup.config.js; node server/es5-index.js",
