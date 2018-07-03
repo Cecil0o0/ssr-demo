@@ -5,4 +5,4 @@
 # 业务打包后的文件不追踪
 /server/**
 !/server/index.js
-!/server/transform.js
+!/server/rollup.config.js
