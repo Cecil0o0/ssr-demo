@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-30 23:54:27
+ * @Last Modified time: 2018-07-03 21:33:07
  * @Description 工程通用配置
  */
 'use strict'
@@ -11,6 +11,7 @@ import { assetsPath } from './utils'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import env from '../config/env'
+import { PROJECT_ENV } from '../config'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -90,7 +91,8 @@ export default {
       'process.env': {
         'assetsSubDirectory': JSON.stringify(env.assetsSubDirectory),
         'assetsPublicPath': JSON.stringify(env.assetsPublicPath),
-        'assetsRoot': JSON.stringify(env.assetsRoot)
+        'assetsRoot': JSON.stringify(env.assetsRoot),
+        'NODE_ENV': JSON.stringify(PROJECT_ENV)
       }
     }),
     new VueLoaderPlugin(),

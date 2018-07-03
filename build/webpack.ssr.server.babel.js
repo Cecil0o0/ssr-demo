@@ -19,7 +19,7 @@ export default merge(baseConf, {
   target: 'node',
 
   output: {
-    path: path.resolve(__dirname, '../server'),
+    path: path.resolve(__dirname, '../server/middleware/router/ssr'),
     filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
@@ -42,7 +42,7 @@ export default merge(baseConf, {
     new FileManagerWebapckPlugin({
       onStart: {
         delete: [
-          path.resolve(__dirname, '../server', SSR_SERVER_BUNDLE)
+          path.resolve(__dirname, '../server/middleware/router/ssr/', SSR_SERVER_BUNDLE)
         ]
       }
     })

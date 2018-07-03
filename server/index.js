@@ -1,68 +1,23 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 12:44:48
+ * @Last Modified time: 2018-07-03 22:48:22
  * @Description 无
  */
 'use strict'
 import Koa from 'koa'
-import KoaRouter from 'koa-router'
-import KoaStatic from 'koa-static'
-import c2k from 'koa-connect'
-import proxy from 'http-proxy-middleware'
-import path from 'path'
 import signale from 'signale'
-import { createBundleRenderer } from 'vue-server-renderer'
 import env from '../config/env'
-const { proxyTable } = env
-
-// vue应用程序工厂函数
-const template = require('fs').readFileSync(__dirname + '/../src/templates/ssr.index.template.html', 'utf-8')
-// server-renderer
-import clientManifest from './vue-ssr-client-manifest.json'
-import serverBundleJSON from './vue-ssr-server-bundle.json'
-const renderer = createBundleRenderer(serverBundleJSON, {
-  runInNewContext: 'false',
-  template,
-  clientManifest
-})
+import RouterMDW from './middleware/router'
+import { KoaStaticMDW } from './middleware/others'
 
 const app = new Koa()
 
-const router = new KoaRouter()
+// 静态资源中间件（建议用CDN托管）
+KoaStaticMDW(app)
 
-proxyTable && Object.keys(proxyTable).forEach(key => {
-  router.all(`${key}*`, c2k(proxy(proxyTable[key])))
-})
-
-router.get('*', async (context, next) => {
-  await renderer.renderToString(context).then(html => {
-    context.body = html
-    context.type = '.html'
-    next()
-  }, err => {
-    signale.error(err)
-    let errStr
-    try {
-      if (err instanceof Error) {
-        errStr = err.toString()
-      } else {
-        errStr = JSON.stringify(err)
-      }
-    } catch(e) {
-      errStr = err.toString()
-    }
-    context.body = errStr
-    next()
-  })
-})
-
-app
-  .use(KoaStatic(path.resolve(__dirname, '../dist'), {
-    gzip: true
-  }))
-  .use(router.routes())
-  .use(router.allowedMethods())
+// 路由中间件
+RouterMDW(app)
 
 app.listen(env.port, () => {
   signale.success('server is listening at '+ env.port)

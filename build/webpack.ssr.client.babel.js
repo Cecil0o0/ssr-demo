@@ -24,13 +24,13 @@ let plugins = [
       move: [
         {
           source: resolve('../dist/' + SSR_CLIENT_MANIFEST),
-          destination: resolve('../server/' + SSR_CLIENT_MANIFEST)
+          destination: resolve('../server/middleware/router/ssr/' + SSR_CLIENT_MANIFEST)
         }
       ]
     },
     onStart: {
       delete: [
-        resolve('../server/' + SSR_CLIENT_MANIFEST)
+        resolve('../server/middleware/router/ssr/' + SSR_CLIENT_MANIFEST)
       ]
     }
   })

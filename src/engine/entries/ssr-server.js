@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-02 19:47:28
+ * @Last Modified time: 2018-07-03 21:55:46
  * @Description 打包vue-ssr-server-bundle.json入口文件
  */
 'use strict'
@@ -17,7 +17,7 @@ export default context => {
     const { app, router, store } = createApp()
 
     // 设置服务端的route
-    router.push(context.req.url)
+    router.push(context.url)
 
     // 等到 router 将可能的异步组件和钩子函数解析完
     router.onReady(() => {
