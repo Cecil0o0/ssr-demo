@@ -16,6 +16,8 @@ if (PROJECT_ENV !== 'dev') {
 export default merge(clientConf, {
   mode: 'development',
 
+  devtool: 'source-map',
+
   entry: {
     client: [path.join(__dirname, '../src/engine/entries/standalone.js')]
   },

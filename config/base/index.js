@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-06-30 15:31:47
+ * @Last Modified time: 2018-07-07 15:32:51
  * @Description 插件或组件等基础配置
  */
 'use strict'
@@ -16,6 +16,7 @@ export const ROUTER_BASE_CONFIG = {
   transitionOnLoad: true,
   // experimetal
   // preload or on demand
+  // 目前只支持ondemand
   Client_AsyncData_Policy: 'ondemand'
 }
 

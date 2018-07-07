@@ -1,5 +1,13 @@
 module.exports = {
+  ident: 'postcss',
   plugins: [
-    require('autoprefixer')
+    require('postcss-import')({
+      addModulesDirectories: ['src/assets'],
+      skipDuplicates: true,
+      plugins: [
+        require('stylelint')()
+      ]
+    }),
+    require('autoprefixer')()
   ]
 }

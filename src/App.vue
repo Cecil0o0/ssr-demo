@@ -18,6 +18,11 @@ export default {
 </script>
 
 <style lang="stylus">
+@import 'common/base.css'
 body
   background-color #e5e5e5
+  display flex
+  justify-content center
+  align-items center
+  height 100vh
 </style>
