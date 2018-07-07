@@ -1,14 +1,14 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-02 19:57:56
+ * @Last Modified time: 2018-07-07 20:45:38
  * @Description 全局配置开关
  */
 'use strict'
 
 // 兼容多平台，web-standalone/web-ssr/wxmp/alimp/native/快应用
 // 支持web-standalone以及web-ssr
-export const HOST_PLATFORM = 'web-ssr'
+export const HOST_PLATFORM = 'web-standalone'
 
 // 工程环境配置，dev/test/pre/production
 export const PROJECT_ENV = 'dev'
@@ -32,7 +32,7 @@ export const ENABLE_REQ_LOG = false
 export const ENABLE_RES_LOG = false
 
 // 是否开启api调试
-export const ENABLE_API_DEBUG = true
+export const ENABLE_API_DEBUG = false
 
 // TODO 是否使用异步组件懒加载
 export const ENABLE_ASYNC_COM = true

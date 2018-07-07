@@ -1,5 +1,13 @@
 {
-  "presets": ["env", "stage-2"],
+  "presets": [
+    [
+      "env",
+      {
+        "modules": "commonjs"
+      }
+    ],
+    "stage-2"
+  ],
   "plugins": [
     "syntax-dynamic-import",
     [

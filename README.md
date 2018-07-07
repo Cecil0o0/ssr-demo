@@ -16,7 +16,8 @@
 - 支持store动态注册注销
 - 支持api模块化
 - 支持webpack打包分析
-- 支持happypack多线程打包（仅支持js）
+- 支持happypack多线程打包（仅支持js），加快打包速率
+- 支持dllPlugin打包静态vendor包，加快打包速率
 - webpack编译时加上参数 --json > stat.json 后，可以上传到 [webpack-analyse](http://webpack.github.io/analyse/) 、[webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/) 等分析站点上，看看打包的模块信息
 - js支持require路径别名（webpack），css支持从指定路径@import（postcss-import）
 

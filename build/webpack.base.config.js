@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-07 18:24:22
+ * @Last Modified time: 2018-07-07 21:12:27
  * @Description 工程通用配置
  */
 'use strict'
@@ -10,6 +10,7 @@ import path from 'path'
 import { assetsPath } from './utils'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import env from '../config/env'
 import { PROJECT_ENV } from '../config'
 import HappyPack from 'happypack'
@@ -99,6 +100,11 @@ export default {
         'NODE_ENV': JSON.stringify(PROJECT_ENV)
       }
     }),
+    new webpack.DllReferencePlugin({
+      manifest: require(__dirname + '/manifest.dll.json'),
+      sourceType: 'var'
+    }),
+    new ProgressBarPlugin(),
     new VueLoaderPlugin(),
     // 友好的控制台提示插件
     new FriendlyErrorsPlugin(),

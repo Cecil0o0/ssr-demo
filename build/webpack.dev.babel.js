@@ -49,7 +49,7 @@ export default merge(clientConf, {
     },
     // 使用http-proxy-middleware的代理功能
     proxy: env.proxyTable,
-    progress: true,
+    progress: false,
     // rewrite publicPath
     publicPath: env.assetsPublicPath
   },
