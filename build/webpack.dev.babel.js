@@ -19,7 +19,7 @@ export default merge(clientConf, {
   devtool: 'source-map',
 
   entry: {
-    client: [path.join(__dirname, '../src/engine/entries/standalone.js')]
+    client: ['@babel/polyfill', path.join(__dirname, '../src/engine/entries/standalone.js')]
   },
 
   devServer: {

@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-07 21:19:37
+ * @Last Modified time: 2018-07-08 20:32:36
  * @Description dll plugin，为加快webpack打包速度
  */
 'use strict'
@@ -21,7 +21,7 @@ module.exports = {
       'vue-router',
       'vuex',
       'axios',
-      'babel-polyfill'
+      '@babel/polyfill'
     ]
   },
 

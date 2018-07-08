@@ -1,12 +1,14 @@
 dependencies:
+  '@babel/polyfill': 7.0.0-beta.52
   axios: 0.18.0
-  babel-polyfill: 6.26.0
   babel-runtime: 6.26.0
+  core-js: 2.5.7
   http-proxy-middleware: 0.18.0
   koa: 2.5.1
   koa-connect: 2.0.1
   koa-router: 7.4.0
   koa-static: 5.0.0
+  regenerator-runtime: 0.12.0
   signale: 1.2.1
   vue: 2.5.16
   vue-router: 3.0.1
@@ -19,7 +21,6 @@ devDependencies:
   babel-eslint: 8.2.5
   babel-loader: 7.1.4
   babel-plugin-syntax-dynamic-import: 6.18.0
-  babel-plugin-transform-runtime: 6.23.0
   babel-preset-env: 1.7.0
   babel-preset-stage-2: 6.24.1
   clean-webpack-plugin: 0.1.19
@@ -101,6 +102,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Il19yJvy7vMFm8AVAh6OZzaFoAd0hbkeMZiX3P5HGD+z7dyI7RzndHB0dg6Urh/VAFfHtpOIzDUSxmY6coyZWQ==
+  /@babel/polyfill/7.0.0-beta.52:
+    dependencies:
+      core-js: 2.5.7
+      regenerator-runtime: 0.11.1
+    dev: false
+    resolution:
+      integrity: sha1-3OpV5TR+nOqS9e+UXBqEF+oddNQ=
   /@babel/template/7.0.0-beta.44:
     dependencies:
       '@babel/code-frame': 7.0.0-beta.44
@@ -1130,12 +1138,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-4HA2lvveJ/Cj78rPi03KL3s6jy8=
-  /babel-plugin-transform-runtime/6.23.0:
-    dependencies:
-      babel-runtime: 6.26.0
-    dev: true
-    resolution:
-      integrity: sha1-iEkNRGUC6puOfvsP4J7E2ZR5se4=
   /babel-plugin-transform-strict-mode/6.24.1:
     dependencies:
       babel-runtime: 6.26.0
@@ -1148,6 +1150,7 @@ packages:
       babel-runtime: 6.26.0
       core-js: 2.5.7
       regenerator-runtime: 0.10.5
+    dev: true
     resolution:
       integrity: sha1-N5k3q8Z9eJWXCtxiHyhM2WbPIVM=
   /babel-preset-env/1.7.0:
@@ -6004,11 +6007,16 @@ packages:
     resolution:
       integrity: sha512-1G6jJVDWrt0rK99kBjvEtziZNCICAuvIPkSiUFIQxVP06RCVpq3dmDo2oi6ABpYaDYaTRr67BEhL8r1wgEZZKg==
   /regenerator-runtime/0.10.5:
+    dev: true
     resolution:
       integrity: sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
   /regenerator-runtime/0.11.1:
     resolution:
       integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
+  /regenerator-runtime/0.12.0:
+    dev: false
+    resolution:
+      integrity: sha512-SpV2LhF5Dm9UYMEprB3WwsBnWwqTrmjrm2UZb42cl2G02WVGgx7Mg8aa9pdLEKp6hZ+/abcMc2NxKA8f02EG2w==
   /regenerator-transform/0.10.1:
     dependencies:
       babel-runtime: 6.26.0
@@ -7871,6 +7879,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 8
 shrinkwrapVersion: 3
 specifiers:
+  '@babel/polyfill': ^7.0.0-beta.52
   autoprefixer: ^8.6.3
   axios: ^0.18.0
   babel-cli: ^6.26.0
@@ -7878,13 +7887,12 @@ specifiers:
   babel-eslint: ^8.2.5
   babel-loader: ^7.1.4
   babel-plugin-syntax-dynamic-import: ^6.18.0
-  babel-plugin-transform-runtime: ^6.23.0
-  babel-polyfill: ^6.26.0
   babel-preset-env: ^1.7.0
   babel-preset-stage-2: ^6.24.1
   babel-runtime: ^6.26.0
   clean-webpack-plugin: ^0.1.19
   copy-webpack-plugin: ^4.5.1
+  core-js: ^2.5.7
   css-loader: ^1.0.0
   eslint: ^5.0.0
   eslint-config-vue: ^2.0.2
@@ -7905,6 +7913,7 @@ specifiers:
   postcss-import: ^11.1.0
   postcss-loader: ^2.1.5
   progress-bar-webpack-plugin: ^1.11.0
+  regenerator-runtime: ^0.12.0
   rollup: ^0.62.0
   rollup-plugin-json: ^3.0.0
   rollup-plugin-node-resolve: ^3.3.0

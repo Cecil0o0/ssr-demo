@@ -13,7 +13,9 @@ import { getEntryPath } from './utils'
 export default merge(baseConf, {
   mode: PROJECT_ENV === 'production' ? 'production' : 'development',
 
-  entry: getEntryPath('ssr-server.js'),
+  entry: {
+    server: getEntryPath('ssr-server.js')
+  },
 
   // in order to ignore built-in modules like path, fs, etc.
   target: 'node',

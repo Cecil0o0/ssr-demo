@@ -1,10 +1,11 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-03 22:48:22
+ * @Last Modified time: 2018-07-08 23:14:25
  * @Description 无
  */
 'use strict'
+import '@babel/polyfill'
 import Koa from 'koa'
 import signale from 'signale'
 import env from '../config/env'

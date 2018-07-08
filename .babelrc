@@ -3,21 +3,19 @@
     [
       "env",
       {
-        "modules": "commonjs"
+        "modules": "commonjs",
+        "debug": false,
+        "useBuiltIns": "entry",
+        "targets": {
+          "browsers": [
+            "last 2 version"
+          ]
+        }
       }
     ],
     "stage-2"
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    [
-      "transform-runtime",
-      {
-        "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": "babel-runtime"
-      }
-    ]
+    "syntax-dynamic-import"
   ]
 }

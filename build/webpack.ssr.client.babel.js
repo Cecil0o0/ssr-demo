@@ -34,7 +34,10 @@ let plugins = [
 
 export default merge(clientConf, {
   entry: {
-    client: getEntryPath('ssr-client.js')
+    client: [
+      '@babel/polyfill',
+      getEntryPath('ssr-client.js')
+    ]
   },
 
   optimization: {
