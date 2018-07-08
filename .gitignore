@@ -1,8 +1,14 @@
 /node_modules/
 /.vscode/
 /dist/
+/build/manifest.dll.json
 
 # 业务打包后的文件不追踪
 /server/**
 !/server/index.js
 !/server/rollup.config.js
+!/server/middleware
+
+# 业务依赖静态文件夹
+/static/
+!/static/.gitkeep

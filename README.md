@@ -28,3 +28,4 @@
 - 性能监控与分析
 - 静态CDN自动上传
 - TypeScript
+- PWA
