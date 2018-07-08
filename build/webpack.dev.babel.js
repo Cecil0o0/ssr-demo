@@ -9,7 +9,7 @@ import signale from 'signale'
 import path from 'path'
 
 if (PROJECT_ENV !== 'dev') {
-  signale.error('请将config/index.js中PROJECT_ENV设置为dev后重试')
+  signale.error('为保证开发时构建性能，请将config/index.js中PROJECT_ENV设置为dev后重试')
   process.exit(0)
 }
 

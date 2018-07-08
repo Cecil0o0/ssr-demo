@@ -1,10 +1,13 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-01 11:17:53
+ * @Last Modified time: 2018-07-08 17:10:52
  * @Description 打包vue-ssr-client-manifest.json入口文件
  */
 'use strict'
+
+/* eslint-disable */
+__webpack_nonce__ = 'c29tZSBjb29sIHN0cmluZyB3aWxsIHBvcCB1cCAxMjM='
 
 import Vue from 'vue'
 import { createApp } from '../app'

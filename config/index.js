@@ -1,14 +1,14 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-08 14:51:20
+ * @Last Modified time: 2018-07-08 17:09:49
  * @Description 全局配置开关
  */
 'use strict'
 
 // 兼容多平台，web-standalone/web-ssr/wxmp/alimp/native/快应用
 // 支持web-standalone以及web-ssr
-export const HOST_PLATFORM = 'web-ssr'
+export const HOST_PLATFORM = 'web-standalone'
 
 // 工程环境配置，dev/test/pre/production
 export const PROJECT_ENV = 'dev'

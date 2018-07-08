@@ -3,12 +3,16 @@
 /dist/
 /build/manifest.dll.json
 
-# 业务打包后的文件不追踪
+# 打包后的文件
 /server/**
 !/server/index.js
 !/server/rollup.config.js
 !/server/middleware
+!/server/utils.js
 
-# 业务依赖静态文件夹
+# 依赖的静态文件夹
 /static/**
 !/static/.gitkeep
+
+# 打包分析文件
+stat.json

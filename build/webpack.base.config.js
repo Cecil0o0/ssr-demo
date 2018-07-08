@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-08 14:43:43
+ * @Last Modified time: 2018-07-08 18:55:54
  * @Description 工程通用配置
  */
 'use strict'
@@ -19,6 +19,7 @@ import os from 'os'
 const happyThreadPool = HappyPack.ThreadPool({
   size: os.cpus().length
 })
+import { argv } from 'yargs'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -59,8 +60,7 @@ const webpackConf = {
         include: [
           resolve('src'),
           resolve('node_modules/webpack-dev-server/client')
-        ],
-        exclude: ['/node_modules/']
+        ]
       },
       {
         test: /\.css$/,
@@ -103,10 +103,6 @@ const webpackConf = {
     }),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
-    // 友好的控制台提示插件
-    new FriendlyErrorsPlugin(),
-    // 通过串联部分模块到单独闭包执行从而提升代码在浏览器端的初始执行速度（术语叫scope hoisting）
-    new webpack.optimize.ModuleConcatenationPlugin(),
     // happypack多线程打包
     new HappyPack({
       id: 'js',
@@ -125,6 +121,16 @@ if (ENABLE_CSS_EXTRACT && HOST_PLATFORM === 'web-standalone') {
       chunkFilename: assetsPath('css/[id].[hash:5].css')
     })
   )
+}
+
+if (PROJECT_ENV === 'production') {
+  // 通过串联部分模块到单独闭包执行从而提升代码在浏览器端的初始执行速度（术语叫scope hoisting）
+  webpackConf.plugins.push(new webpack.optimize.ModuleConcatenationPlugin())
+}
+
+if (!argv.analyzing) {
+  // 友好的控制台提示插件
+  webpackConf.plugins.push(new FriendlyErrorsPlugin())
 }
 
 export default webpackConf

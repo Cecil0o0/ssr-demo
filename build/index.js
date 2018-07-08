@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-08 14:56:10
+ * @Last Modified time: 2018-07-08 19:03:11
  * @Description 根据不同的config文件执行不同命令
  */
 'use strict'
@@ -25,16 +25,16 @@ let buildDll = DllFileIsExist ? 'echo "已取缓存dll文件，如vendor文件�
 
 if (argv.dev) {
   // dev mode
-  shell_stdio(`${buildDll}&&npx webpack-dev-server --config build/webpack.dev.babel.js --color`)
+  shell_stdio(`${buildDll} && npx webpack-dev-server --config build/webpack.dev.babel.js --color`)
 } else if (argv.analyzing) {
   // dev mode
-  shell_stdio(`${buildDll}&&npx webpack --config build/webpack.standalone.babel.js --color --analyzing`)
+  shell_stdio(`${buildDll} && npx webpack --config build/webpack.standalone.babel.js --color --analyzing && npx webpack --config build/webpack.standalone.babel.js --analyzing --profile --json > stat.json`)
 } else {
   // prod mode
   if (HOST_PLATFORM === 'web-ssr') {
-    shell_stdio(`${buildDll}&&npm run serve`)
+    shell_stdio(`${buildDll} && npm run serve`)
   } else if (HOST_PLATFORM === 'web-standalone') {
-    shell_stdio(`${buildDll}&&npm run build:client-standalone`)
+    shell_stdio(`${buildDll} && npm run build:client-standalone`)
   } else {
     signale.warn('目前只支持web-standalone以及web-ssr两种打包方式')
   }

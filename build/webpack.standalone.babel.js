@@ -30,7 +30,12 @@ let plugins = [
 
 if (argv.analyzing) {
   plugins = plugins.concat([
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      analyzerHost: '0.0.0.0',
+      analyzerPort: 8888,
+      logLevel: 'silent'
+    })
   ])
 }
 
