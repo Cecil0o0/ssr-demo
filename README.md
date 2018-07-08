@@ -35,6 +35,12 @@ npm run dev
 npm run build
 ```
 
+分析
+
+```shell
+npm run analyze
+```
+
 # ROADMAP
 
 - GraphQL

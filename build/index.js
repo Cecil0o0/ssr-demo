@@ -1,7 +1,7 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-08 14:37:40
+ * @Last Modified time: 2018-07-08 14:56:10
  * @Description 根据不同的config文件执行不同命令
  */
 'use strict'
@@ -11,7 +11,7 @@ import signale from 'signale'
 import { shell_stdio } from './utils'
 import fs from 'fs'
 import yargs from 'yargs'
-let args = yargs.argv
+let argv = yargs.argv
 
 let DllFileIsExist = true
 
@@ -23,9 +23,12 @@ try {
 
 let buildDll = DllFileIsExist ? 'echo "已取缓存dll文件，如vendor文件有更新请自行执行npm run build:dll命令"' : 'npm run build:dll'
 
-if (args.dev) {
+if (argv.dev) {
   // dev mode
   shell_stdio(`${buildDll}&&npx webpack-dev-server --config build/webpack.dev.babel.js --color`)
+} else if (argv.analyzing) {
+  // dev mode
+  shell_stdio(`${buildDll}&&npx webpack --config build/webpack.standalone.babel.js --color --analyzing`)
 } else {
   // prod mode
   if (HOST_PLATFORM === 'web-ssr') {

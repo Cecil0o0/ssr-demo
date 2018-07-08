@@ -5,10 +5,6 @@ import path from 'path'
 import VueSSRClientPlugin from 'vue-server-renderer/client-plugin'
 import FileManagerWebapckPlugin from 'filemanager-webpack-plugin'
 import { SSR_CLIENT_MANIFEST } from '../config/constants'
-import webpackBundleAnalyer from 'webpack-bundle-analyzer'
-const BundleAnalyzerPlugin = webpackBundleAnalyer.BundleAnalyzerPlugin
-import Argv from 'yargs'
-const argv = Argv.argv
 import { getEntryPath } from './utils'
 
 function resolve(dir) {
@@ -36,12 +32,6 @@ let plugins = [
   })
 ]
 
-if (argv.analyze) {
-  plugins = plugins.concat([
-    new BundleAnalyzerPlugin()
-  ])
-}
-
 export default merge(clientConf, {
   entry: {
     client: getEntryPath('ssr-client.js')
@@ -49,7 +39,7 @@ export default merge(clientConf, {
 
   optimization: {
     splitChunks: {
-      chunks: 'initial',
+      chunks: 'all',
       name: true,
       minChunks: Infinity
     }
