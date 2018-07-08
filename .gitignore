@@ -10,5 +10,5 @@
 !/server/middleware
 
 # 业务依赖静态文件夹
-/static/
+/static/**
 !/static/.gitkeep
