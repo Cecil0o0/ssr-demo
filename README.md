@@ -1,6 +1,6 @@
 # ssr-demo
 
-> 推荐使用pnpm i安装依赖
+> 推荐使用[pnpm](https://pnpm.js.org/)安装依赖
 
 # FEATURES
 
@@ -20,6 +20,20 @@
 - 支持dllPlugin打包静态vendor包，加快打包速率
 - webpack编译时加上参数 --json > stat.json 后，可以上传到 [webpack-analyse](http://webpack.github.io/analyse/) 、[webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/) 等分析站点上，看看打包的模块信息
 - js支持require路径别名（webpack），css支持从指定路径@import（postcss-import）
+
+# CLI
+
+开发模式
+
+```shell
+npm run dev
+```
+
+打包（修改config/index.js中的HOST_PLATFORM与PROJECT_ENV值然后执行以下命令）
+
+```shell
+npm run build
+```
 
 # ROADMAP
 

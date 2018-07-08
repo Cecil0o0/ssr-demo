@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Header">
     Header
     <input type="text" v-model="blocks">
   </div>
@@ -30,3 +30,8 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+.Header
+  font-size 2vw
+</style>

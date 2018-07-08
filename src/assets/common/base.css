@@ -1,3 +1,8 @@
 html {
   font-family: Monaco, Courier, monospace, 'PingFang SC';
 }
+
+body {
+  padding: 0;
+  margin: 0;
+}

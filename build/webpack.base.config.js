@@ -1,21 +1,24 @@
 /*
  * @Author: Cecil
  * @Last Modified by: Cecil
- * @Last Modified time: 2018-07-07 21:12:27
+ * @Last Modified time: 2018-07-08 14:43:43
  * @Description 工程通用配置
  */
 'use strict'
 import webpack from 'webpack'
 import path from 'path'
-import { assetsPath } from './utils'
+import { assetsPath, generateStyleLoader } from './utils'
 import VueLoaderPlugin from 'vue-loader/lib/plugin'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
+import ExtractCssChunks from 'extract-css-chunks-webpack-plugin'
 import env from '../config/env'
-import { PROJECT_ENV } from '../config'
+import { PROJECT_ENV, ENABLE_CSS_EXTRACT, HOST_PLATFORM } from '../config'
 import HappyPack from 'happypack'
 import os from 'os'
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length})
+const happyThreadPool = HappyPack.ThreadPool({
+  size: os.cpus().length
+})
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -32,7 +35,7 @@ const createLintingRule = () => ({
   }
 })
 
-export default {
+const webpackConf = {
   context: path.resolve(__dirname, '../'),
 
   resolve: {
@@ -53,25 +56,19 @@ export default {
       {
         test: /\.js$/,
         use: 'happypack/loader?id=js',
-        include: [resolve('src'), resolve('node_modules/webpack-dev-server/client')],
+        include: [
+          resolve('src'),
+          resolve('node_modules/webpack-dev-server/client')
+        ],
         exclude: ['/node_modules/']
       },
       {
         test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader?importLoaders=1',
-          'postcss-loader'
-        ]
+        use: generateStyleLoader()
       },
       {
         test: /\.styl/,
-        use: [
-          'vue-style-loader',
-          'css-loader?importLoaders=2',
-          'postcss-loader',
-          'stylus-loader'
-        ]
+        use: generateStyleLoader('styl')
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -94,10 +91,10 @@ export default {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'assetsSubDirectory': JSON.stringify(env.assetsSubDirectory),
-        'assetsPublicPath': JSON.stringify(env.assetsPublicPath),
-        'assetsRoot': JSON.stringify(env.assetsRoot),
-        'NODE_ENV': JSON.stringify(PROJECT_ENV)
+        assetsSubDirectory: JSON.stringify(env.assetsSubDirectory),
+        assetsPublicPath: JSON.stringify(env.assetsPublicPath),
+        assetsRoot: JSON.stringify(env.assetsRoot),
+        NODE_ENV: JSON.stringify(PROJECT_ENV)
       }
     }),
     new webpack.DllReferencePlugin({
@@ -114,8 +111,20 @@ export default {
     new HappyPack({
       id: 'js',
       threadPool: happyThreadPool,
-      loaders: [ 'babel-loader' ],
-      debug: true
+      loaders: ['babel-loader']
     })
   ]
 }
+
+if (ENABLE_CSS_EXTRACT && HOST_PLATFORM === 'web-standalone') {
+  webpackConf.plugins.unshift(
+    new ExtractCssChunks({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: assetsPath('css/[name].[hash:5].css'),
+      chunkFilename: assetsPath('css/[id].[hash:5].css')
+    })
+  )
+}
+
+export default webpackConf
