@@ -54,6 +54,7 @@ npm run analyze
 - 支持蚂蚁小程序build
 - 支持快应用build
 - 支持weex build
+- 支持vue-class-component
 
 # SSR Tips
 
