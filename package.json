@@ -36,6 +36,7 @@
   "homepage": "https://github.com/Cecil0o0/ssr-demo#readme",
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.52",
+    "@qingf/helper": "^1.0.2",
     "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "core-js": "^2.5.7",

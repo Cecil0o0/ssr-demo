@@ -1,3 +1,4 @@
+const { promisify } = require('@qingf/helper')
 const { createBundleRenderer } = require('vue-server-renderer')
 const fs = require('fs')
 const path = require('path')
@@ -29,21 +30,4 @@ module.exports = function(router) {
       }
     )
   })
-}
-
-// nodeStandardCallback
-function promisify(func) {
-  return function() {
-    let args = Array.prototype.slice.call(arguments)
-    return new Promise((resolve, reject) => {
-      try {
-        func(...args, function(err, ...data) {
-          if (err) return reject(err)
-          resolve(data)
-        })
-      } catch (e) {
-        reject(e)
-      }
-    })
-  }
 }

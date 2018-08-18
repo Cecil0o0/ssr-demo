@@ -1,5 +1,6 @@
 dependencies:
   '@babel/polyfill': 7.0.0-beta.52
+  '@qingf/helper': 1.0.2
   axios: 0.18.0
   babel-runtime: 6.26.0
   core-js: 2.5.7
@@ -156,6 +157,10 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-LAQ1d4OPfSJ/BMbI2DuizmYrrkD9JMaTdi2hQTlI53lQ4kRQPyZQRS4CYQ7O66bnBBnP/oYdRxbk++X0xuFU6A==
+  /@qingf/helper/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-UywlchT3D46Lm2CrnXYdpnIZ+VtvZeh1rPQnUeVexr5CFdwNk932TwoK6iZrI9SEYC6kNGIo+IJbPBLnMijyBg==
   /@types/estree/0.0.39:
     dev: true
     resolution:
@@ -7880,6 +7885,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@babel/polyfill': ^7.0.0-beta.52
+  '@qingf/helper': ^1.0.2
   autoprefixer: ^8.6.3
   axios: ^0.18.0
   babel-cli: ^6.26.0
