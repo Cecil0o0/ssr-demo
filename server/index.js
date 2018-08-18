@@ -5,12 +5,12 @@
  * @Description 无
  */
 'use strict'
-import '@babel/polyfill'
-import Koa from 'koa'
-import signale from 'signale'
-import env from '../config/env'
-import RouterMDW from './middleware/router'
-import { KoaStaticMDW } from './middleware/others'
+require('@babel/polyfill')
+const Koa = require('koa')
+const signale = require('signale')
+const env = { port: 3333 }
+const RouterMDW = require('./middleware/router')
+const { KoaStaticMDW } = require('./middleware/others')
 
 const app = new Koa()
 
@@ -21,5 +21,5 @@ KoaStaticMDW(app)
 RouterMDW(app)
 
 app.listen(env.port, () => {
-  signale.success('server is listening at '+ env.port)
+  signale.success('server is listening at ' + env.port)
 })

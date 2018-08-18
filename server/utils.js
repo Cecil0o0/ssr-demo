@@ -5,9 +5,11 @@
  * @Description server端统一需要的工具文件
  */
 'use strict'
-import path from 'path'
+const path = require('path')
 
-export const getProjectRoot = () => {
-  // 即编码过的
-  return path.resolve(__dirname, '../')
+module.exports = {
+  getProjectRoot() {
+    // 即编码过的
+    return path.resolve(__dirname, '../')
+  }
 }

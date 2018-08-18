@@ -4,11 +4,7 @@
 /build/manifest.dll.json
 
 # 打包后的文件
-/server/**
-!/server/index.js
-!/server/rollup.config.js
-!/server/middleware
-!/server/utils.js
+/server/es5-index.js
 
 # 依赖的静态文件夹
 /static/**
