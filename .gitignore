@@ -5,6 +5,8 @@
 
 # 打包后的文件
 /server/es5-index.js
+/server/middleware/router/ssr/vue-ssr-server-bundle.json
+/server/middleware/router/ssr/vue-ssr-client-manifest.json
 
 # 依赖的静态文件夹
 /static/**
